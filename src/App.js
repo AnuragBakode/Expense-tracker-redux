@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useSelector } from "react-redux";
+import { Transactions } from "./components/Transactions";
+import AddTransaction from "./components/AddTransaction";
+import Balance from "./components/Balance";
+import CredDeb from "./components/CredDeb";
 
 function App() {
+  const transactions = useSelector((state) => state.transaction.transaction);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="data">
+        <Balance transactions={transactions} />
+        <CredDeb transactions={transactions} />
+        <AddTransaction transactions={transactions} />
+      </div>
+
+      <div className="transactions-list">
+        <Transactions transactions={transactions} />
+      </div>
     </div>
   );
 }
