@@ -1,13 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  transaction: [
-    {
-      id: 1,
-      description: "First Expense",
-      amount: 100,
-    },
-  ],
+  transaction: [],
 };
 
 const TransactionSlice = createSlice({
@@ -19,6 +13,7 @@ const TransactionSlice = createSlice({
     },
   },
 });
+
 
 export default TransactionSlice.reducer;
 export const { addTransaction } = TransactionSlice.actions;
