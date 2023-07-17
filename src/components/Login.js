@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { loginFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
+import axios from 'axios';
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom';
 
 const fields = loginFields;
 let fieldsState = {};
@@ -10,6 +13,7 @@ fields.forEach(field => fieldsState[field.id] = '');
 export default function Login() {
     const [loginState, setLoginState] = useState(fieldsState);
 
+    const navigate = useNavigate()
     const handleChange = (e) => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value })
     }
@@ -19,9 +23,28 @@ export default function Login() {
         authenticateUser();
     }
 
+    const notify = (err) => {
+        toast.error(err, {
+            theme: "dark"
+        })
+    }
+
     //Handle Login API Integration here
     const authenticateUser = () => {
-
+        axios.post('http://localhost:4000/auth/login', {
+            email: loginState['email-address'],
+            password: loginState.password
+        }, {
+            withCredentials: true,
+        }).then(data => {
+            toast.success("Logged in successfully", {
+                theme: "dark"
+            })
+            navigate('/dashboard')
+        }).catch((err) => {
+            console.log(err)
+            notify(err.response.data.error.message)
+        })
     }
 
     return (

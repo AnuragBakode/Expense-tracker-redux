@@ -40,7 +40,6 @@ export default function Signup() {
             email: signupState['email-address'],
             password: signupState.password
         }).then(data => {
-            console.log(data)
             toast.success("Successfully created an account", {
                 theme: "dark"
             })
