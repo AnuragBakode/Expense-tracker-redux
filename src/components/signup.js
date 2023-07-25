@@ -35,7 +35,7 @@ export default function Signup() {
 
     //handle Signup API Integration here
     const createAccount = () => {
-        axios.post('http://localhost:4000/auth/register', {
+        axios.post('https://expensetrackerbackend-omqf.onrender.com/auth/register', {
             username: signupState.username,
             email: signupState['email-address'],
             password: signupState.password
@@ -43,7 +43,7 @@ export default function Signup() {
             toast.success("Successfully created an account", {
                 theme: "dark"
             })
-            navigate('/')
+            navigate('/login')
         }).catch((err) => {
             console.log(err)
             notify(err.response.data.error.message)

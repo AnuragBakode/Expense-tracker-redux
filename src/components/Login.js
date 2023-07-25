@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { loginFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
@@ -12,8 +12,18 @@ fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Login() {
     const [loginState, setLoginState] = useState(fieldsState);
-
     const navigate = useNavigate()
+
+    useEffect(() => {
+        axios.get("https://expensetrackerbackend-omqf.onrender.com/auth/isLoggedIn", { withCredentials: true })
+            .then(data => {
+                navigate('/')
+            }).catch(err => {
+                console.log(err)
+            })
+    }, [])
+
+
     const handleChange = (e) => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value })
     }
@@ -31,7 +41,7 @@ export default function Login() {
 
     //Handle Login API Integration here
     const authenticateUser = () => {
-        axios.post('http://localhost:4000/auth/login', {
+        axios.post('https://expensetrackerbackend-omqf.onrender.com/auth/login', {
             email: loginState['email-address'],
             password: loginState.password
         }, {
@@ -40,7 +50,7 @@ export default function Login() {
             toast.success("Logged in successfully", {
                 theme: "dark"
             })
-            navigate('/dashboard')
+            navigate('/')
         }).catch((err) => {
             console.log(err)
             notify(err.response.data.error.message)

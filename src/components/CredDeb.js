@@ -11,11 +11,11 @@ const CredDeb = ({ transactions }) => {
 
   return (
     <div className="cred-deb">
-      <div className="credited">
+      <div className="credited text-xl font-semibold">
         <h3>Credited</h3>
         <h4>$ {credited}</h4>
       </div>
-      <div className="debited">
+      <div className="debited text-xl font-semibold">
         <h3>Debited</h3>
         <h4>$ {debited}</h4>
       </div>

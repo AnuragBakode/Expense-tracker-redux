@@ -9,3 +9,184 @@
 
 }
 
+.details{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.App{
+    display:flex;
+    justify-content : space-around;
+}
+
+.data{
+    width: 50%;
+    padding : 50px;
+    padding-bottom: 0;
+}
+
+.transactions-list{
+    width: 50%;
+    padding : 50px;
+}
+
+.cred-deb{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.credited > h3 {
+    color : green;
+    margin-bottom: 20px;
+}
+
+.debited > h3 {
+    color : red;
+    margin-bottom: 20px;
+}
+
+.transaction-item{
+    /* display: flex;
+    justify-content: space-between; */
+    padding-right: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.add-transaction-title{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+input{
+    width : 100%;
+    padding: 15px;
+    margin-bottom : 10px;
+}
+
+button { 
+    width: max-content;
+    padding : 13px 15px;
+    background-color: #111111;
+    color : white;
+    font-weight: bold;
+    border : none;
+    outline : none;
+}
+
+.current-balance{
+    background-color: #111111;
+    color : white;
+    font-weight: bold;
+    padding-left : 15px;
+    padding-top: 5px ;
+    padding-bottom : 5px;
+}
+
+.current-balance > h1{
+    margin-bottom: 20px;
+}
+
+.green {
+    border-right: 4px solid green;
+}
+
+.red{
+    border-right: 5px solid red;
+}
+
+form > div {
+    width : 100%
+}
+
+.transaction-header{
+    margin-bottom : 2px;
+    padding-bottom : 20px;
+    border-bottom : 2px solid black;
+}
+
+.welcome-msg{
+    color : #b42bc3
+}
+
+.transactions-container{
+    max-height: 800px;
+    overflow-y: scroll;
+}
+
+@media only screen and (max-width : 800px){
+    .App{
+        flex-direction : column;
+    }
+    .data{
+        width : 100%
+    }
+    .transactions-list{
+        width : 100%;
+        padding-top: 10px;
+    }
+
+    .transactions-container{
+        max-height: 600px;
+    }
+}
+
+@media only screen and (max-width : 500px){
+    .inputs{
+        flex-direction: column;
+    }
+}
+
+
+/* Filter */
+
+/* MonthYearSelector.css */
+
+/* Container styles */
+.container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    /* padding: 20px; */
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+
+  .inputs{
+    display: flex;
+  }
+  
+  /* Dropdown styles */
+  label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+  }
+  
+  select {
+    font-size: 14px;
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    cursor: pointer;
+  }
+  
+  /* Selected month and year styles */
+  .selected-info {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .inputs{
+    padding : 10px;
+    padding-left: 0;
+  }
+  

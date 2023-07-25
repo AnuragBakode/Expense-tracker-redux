@@ -1,31 +1,51 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTransaction } from "../redux/TransactionSlice";
+import axios from "axios";
+import { addTransactionlocally } from "../redux/TransactionSlice";
 import "../App.css";
 
 const AddTransaction = ({ transactions }) => {
   const [desc, setdesc] = useState("");
   const [amount, setamount] = useState(0);
+  const [date, setDate] = useState(null);
 
   const dispatch = useDispatch();
 
   const handleExpenseSubmission = (e) => {
     e.preventDefault();
     const newTransaction = {
-      id: transactions[0].id + 1,
       description: desc,
       amount: amount,
+      date: date,
     };
 
-    dispatch(addTransaction(newTransaction));
+    console.log(newTransaction);
+
+    axios
+      .post("https://expensetrackerbackend-omqf.onrender.com/expense", newTransaction, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response);
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // dispatch(addTransaction(newTransaction));
+    dispatch(addTransactionlocally(newTransaction))
 
     setdesc("");
     setamount(0);
+    setDate(null);
   };
 
   return (
     <div>
-      <h2 className = "add-transaction-title">Add a new Transaction</h2>
+      <h2 className="add-transaction-title text-2xl font-medium border-b-2 mb-2">
+        Add a new Transaction
+      </h2>
       <form onSubmit={handleExpenseSubmission}>
         <div>
           <input
@@ -43,7 +63,20 @@ const AddTransaction = ({ transactions }) => {
             placeholder="Enter the amount"
           />
         </div>
-        <button>Add Expense</button>
+        <div>
+          <input
+            type="date"
+            value={date}
+            min={'2000-01-01'}
+            max={'2025-12-31'}
+            onChange={(e) => setDate(e.target.value)}
+            placeholder="Enter the date"
+          />
+
+        </div>
+        <button className="bg-gradient-to-r from-[#b42bc3] to-[#ff00c6] rounded-md mt-6">
+          Add Expense
+        </button>
       </form>
     </div>
   );
