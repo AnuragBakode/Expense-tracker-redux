@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addTransactionlocally } from "../redux/TransactionSlice";
 import "../App.css";
+import { toast } from "react-toastify";
 
 const AddTransaction = ({ transactions }) => {
   const [desc, setdesc] = useState("");
@@ -27,14 +28,19 @@ const AddTransaction = ({ transactions }) => {
       })
       .then((response) => {
         console.log(response);
-
+        toast.success("Expense added successfully")
       })
       .catch((err) => {
         console.log(err);
       });
 
-    // dispatch(addTransaction(newTransaction));
-    dispatch(addTransactionlocally(newTransaction))
+    const currentMonth = new Date().getMonth()
+    const transactionMonth = new Date(date).getMonth()
+
+    if (currentMonth === transactionMonth) {
+      // dispatch(addTransaction(newTransaction));
+      dispatch(addTransactionlocally(newTransaction))
+    }
 
     setdesc("");
     setamount(0);

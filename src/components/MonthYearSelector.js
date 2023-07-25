@@ -6,10 +6,6 @@ import { useDispatch } from "react-redux";
 const MonthYearSelector = () => {
   const dispatch = useDispatch();
 
-  // Initialize state for selected month and year
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
-
   // Months and years options for dropdowns
   const months = [
     "January",
@@ -27,6 +23,12 @@ const MonthYearSelector = () => {
   ];
 
   const years = [2020, 2021, 2022, 2023, 2024, 2025];
+
+  // Initialize state for selected month and year
+  const [selectedMonth, setSelectedMonth] = useState(
+    months[new Date().getMonth()]
+  );
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   // Handle changes in month and year selection
   const handleMonthChange = (event) => {
@@ -64,7 +66,12 @@ const MonthYearSelector = () => {
       <div className="inputs">
         <div>
           {/* <label htmlFor="month">Select Month:</label> */}
-          <select id="month" value={selectedMonth} onChange={handleMonthChange}>
+          <select
+            id="month"
+            value={selectedMonth}
+            onChange={handleMonthChange}
+            required
+          >
             <option value="">Select Month</option>
             {months.map((month, index) => (
               <option key={index} value={month}>
